@@ -1,5 +1,9 @@
 # TDD
 
+## things to remember
+
+- change the permission of the entrypoint.sh on host `chmod +x services/users/entrypoint.sh`
+
 ## RUN THESE
 
 - run
