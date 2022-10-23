@@ -16,7 +16,7 @@ services:
       - APP_SETTINGS=project.config.DevelopmentConfig
       # postgresql://[user[:pw]@][netloc][:port][/dbname][?param1=value1&...]
       - DATABASE_URL=postgresql://postgres:postgres@users-db:5432/users_dev
-      - DATABASE_TEST_URL=postgresql://postgres:postgres@users-db:5434/users_test
+      - DATABASE_TEST_URL=postgresql://postgres:postgres@users-db:5432/users_test
     depends_on:
       - users-db
   
@@ -26,7 +26,7 @@ services:
       context: ./services/users/project/db
       dockerfile: Dockerfile
     ports:
-      - 5435:5432
+      - 5434:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

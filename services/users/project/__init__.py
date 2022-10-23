@@ -1,5 +1,3 @@
-import email
-from email.policy import default
 import os
 
 from flask import Flask, jsonify
@@ -13,6 +11,9 @@ app = Flask(__name__)
 # set config
 app_settings = os.getenv('APP_SETTINGS')
 app.config.from_object(app_settings)
+
+
+import flask
 
 # instantiate the db
 db = SQLAlchemy(app)
