@@ -1,4 +1,4 @@
-# TDD (ON HOLD...)
+# TDD
 
 ## things to remember
 
