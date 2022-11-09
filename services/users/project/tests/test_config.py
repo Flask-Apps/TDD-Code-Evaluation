@@ -1,11 +1,12 @@
 import os
 import unittest
 
-from flask import current_app
+from project import create_app
+
 from flask import current_app
 from flask_testing import TestCase
 
-from project import app
+app = create_app()
 
 
 class TestDevelopmentConfig(TestCase):
