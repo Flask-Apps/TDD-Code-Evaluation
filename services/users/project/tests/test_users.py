@@ -15,6 +15,23 @@ class TestUserService(BaseTestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('pong', data['message'])
         self.assertIn('success', data['status'])
+    
+    def test_add_user(self):
+        '''Ensure a new user can be added to the database'''
+        
+        with self.client:
+            response = self.client.post(
+                '', # /users route
+                data=json.dumps({ # dict -> json string
+                    'username': 'mikeyy',
+                    'email': 'mikeyy@tokyo.com'
+                }),
+                content_type='application/json'
+            )
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 201)
+            self.assertIn('mikeyy@tokyo.com was added!', data['message'])
+            self.assertIn('success', data['status'])
 
 
 if __name__ == "__main__":
