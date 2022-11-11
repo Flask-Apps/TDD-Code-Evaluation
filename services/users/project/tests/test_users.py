@@ -21,7 +21,7 @@ class TestUserService(BaseTestCase):
         
         with self.client:
             response = self.client.post(
-                '', # /users route
+                '/users', # /users route
                 data=json.dumps({ # dict -> json string
                     'username': 'mikeyy',
                     'email': 'mikeyy@tokyo.com'
