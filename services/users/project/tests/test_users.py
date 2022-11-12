@@ -6,6 +6,13 @@ from project.api.models import User
 from project import db
 
 
+def add_user(username, email):
+    user = User(username=username, email=email)
+    db.session.add(user)
+    db.session.commit()
+    return user
+
+
 class TestUserService(BaseTestCase):
     """Tests for the Users Service"""
 
@@ -102,9 +109,10 @@ class TestUserService(BaseTestCase):
         '''
         Ensure get single user behaves correctly
         '''
-        user = User(username='mikeyy', email='mikeyy@tokyo.com')
-        db.session.add(user)
-        db.session.commit()
+        user = add_user(username='mikeyy', email='mikeyy@tokyo.com')
+        # user = User(username='mikeyy', email='mikeyy@tokyo.com')
+        # db.session.add(user)
+        # db.session.commit()
         with self.client:
             response = self.client.get(f'/users/{user.id}')
             data = json.loads(response.data.decode())
@@ -134,6 +142,28 @@ class TestUserService(BaseTestCase):
             self.assertEqual(response.status_code, 404)
             self.assertIn("User doesn't exist", data['message'])
             self.assertIn('fail', data['status'])
+
+    def test_all_users(self):
+        '''
+        Ensure get all users behaves correctly.
+        '''
+        add_user('mikeyy', 'mikeyy@tokyo.com')
+        add_user('toma', 'toma@tokyo.com')
+        with self.client:
+            response = self.client.get('/users')
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(len(data['data']['users']), 2)
+            self.assertIn('mikeyy', data['data']['users'][0]['username'])
+            self.assertIn(
+                'mikeyy@tokyo.com', data['data']['users'][0]['email']
+            )
+            self.assertIn('toma', data['data']['users'][1]['username'])
+            self.assertIn(
+                'toma@tokyo.com', data['data']['users'][1]['email']
+            )
+            self.assertIn('success', data['status'])
+
 
 if __name__ == "__main__":
     unittest.main()
