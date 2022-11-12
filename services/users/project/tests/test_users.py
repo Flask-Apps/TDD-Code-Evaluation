@@ -112,7 +112,28 @@ class TestUserService(BaseTestCase):
             self.assertIn('mikeyy', data['data']['username'])
             self.assertIn('mikeyy@tokyo.com', data['data']['email'])
             self.assertIn('success', data['status'])
-        
+
+    def test_single_user_no_id(self):
+        '''
+        Ensure error is thrown if an id isn't provided
+        '''
+        with self.client:
+            response = self.client.get('users/pow')
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 404)
+            self.assertIn("User doesn't exist", data['message'])
+            self.assertIn('fail', data['status'])
+
+    def test_single_user_incorrect_id(self):
+        '''
+        Ensure error is thrown if the id doesnot exist.
+        '''
+        with self.client:
+            response = self.client.get('/users/420')
+            data = json.loads(response.data.decode())
+            self.assertEqual(response.status_code, 404)
+            self.assertIn("User doesn't exist", data['message'])
+            self.assertIn('fail', data['status'])
 
 if __name__ == "__main__":
     unittest.main()
