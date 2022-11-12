@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from project import db
 from project.api.models import User
+from sqlalchemy import exc
 
 users_blueprint = Blueprint('users', __name__, url_prefix="/users")
 
@@ -16,12 +17,44 @@ def ping_pong():
 @users_blueprint.route('', methods=['POST'])
 def add_user():
     post_data = request.get_json()
+    response_object = {
+        "status": "fail",
+        "message": "Invalid payload."
+    }
+    if not post_data:
+        return jsonify(response_object), 400
     username = post_data.get('username')
     email = post_data.get('email')
-    db.session.add(User(username=username, email=email))
-    db.session.commit()
+    try:
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            db.session.add(User(username=username, email=email))
+            db.session.commit()
+            response_object = {
+                'status': 'success',
+                'message': f'{email} was added!'
+            }
+            return jsonify(response_object), 201
+        else:
+            response_object['message'] = 'Sorry. That email already exists.'
+            return jsonify(response_object), 400
+    except exc.IntegrityError as e:
+        db.session.rollback()
+        return jsonify(response_object), 400
+
+@users_blueprint.route('/<user_id>', methods=['GET'])
+def get_single(user_id):
+    '''
+    Get a single user detail.
+    '''
+    user = User.query.filter_by(id=user_id).first()
     response_object = {
         'status': 'success',
-        'message': f'{email} was added!'
+        'data': {
+            'id': user_id,
+            'username': user.username,
+            'email': user.email,
+            'active': user.active
+        }
     }
-    return jsonify(response_object), 201
+    return jsonify(response_object), 200
