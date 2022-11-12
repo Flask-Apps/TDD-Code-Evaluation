@@ -1,5 +1,6 @@
-Flask
-Werkzeug
-Flask-SQLAlchemy
-Flask-Testing
-psycopg2-binary
+Flask==2.0.3
+Werkzeug==2.0.3
+Flask-SQLAlchemy==2.5.1
+Flask-Testing==0.8.1
+psycopg2-binary==2.9.5
+gunicorn==20.1.0
