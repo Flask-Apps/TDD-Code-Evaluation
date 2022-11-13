@@ -22,6 +22,7 @@ class TestDevelopmentConfig(TestCase):
             os.environ.get('DATABASE_URL')
         )
 
+
 class TestTestingConfig(TestCase):
     def create_app(self):
         app.config.from_object('project.config.TestingConfig')
@@ -34,7 +35,7 @@ class TestTestingConfig(TestCase):
         self.assertTrue(
             app.config['SQLALCHEMY_DATABASE_URI'] ==
             os.environ.get('DATABASE_TEST_URL')
-            ) 
+            )
 
 
 class TestProductionConfig(TestCase):
@@ -48,7 +49,7 @@ class TestProductionConfig(TestCase):
         # self.assertTrue(
         #     app.config['SQLALCHEMY_DATABASE_URI'] ==
         #     os.environ.get('DATABASE_URL')
-        #     ) 
+        #     )
 
 
 if __name__ == "__main__":

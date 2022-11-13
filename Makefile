@@ -10,8 +10,18 @@ build:
 	docker-compose build
 
 test:
+	docker-compose exec users python manage.py test
+
+cov:
+	docker-compose exec users python manage.py cov
+
+flake8:
+	docker-compose exec users flake8 project
+
+test-run:
 	docker-compose \
 	run users python manage.py test
+
 
 seed_db:
 	docker-compose \

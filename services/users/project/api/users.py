@@ -6,6 +6,7 @@ from sqlalchemy import exc
 # users_blueprint = Blueprint('users', __name__, url_prefix="/users")
 users_blueprint = Blueprint('users', __name__, template_folder='./templates')
 
+
 @users_blueprint.route('/users/ping', methods=['GET'])
 def ping_pong():
     return jsonify(
@@ -14,6 +15,7 @@ def ping_pong():
             'message': 'pong!'
         }
     )
+
 
 @users_blueprint.route('/', methods=["GET", "POST"])
 def index():
@@ -24,6 +26,7 @@ def index():
         db.session.commit()
     users = User.query.all()
     return render_template('index.html', users=users)
+
 
 @users_blueprint.route('/users', methods=['POST'])
 def add_user():
@@ -49,9 +52,10 @@ def add_user():
         else:
             response_object['message'] = 'Sorry. That email already exists.'
             return jsonify(response_object), 400
-    except exc.IntegrityError as e:
+    except exc.IntegrityError:
         db.session.rollback()
         return jsonify(response_object), 400
+
 
 @users_blueprint.route('/users/<user_id>', methods=['GET'])
 def get_single_user(user_id):
@@ -79,6 +83,7 @@ def get_single_user(user_id):
             return jsonify(response_object), 200
     except ValueError:
         return jsonify(response_object), 404
+
 
 @users_blueprint.route('/users', methods=['GET'])
 def get_all_users():

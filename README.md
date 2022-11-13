@@ -1,5 +1,12 @@
 # TDD
 
+## Important Terms
+
+### Code coverage
+
+- it is the process of finding areas of our code that aren't exercised by tests.
+- this however doesn't measure the overall effectiveness of the test suite.
+
 ## things to remember
 
 - change the permission of the
@@ -28,3 +35,4 @@
   - `docker-compose up`
   - `make recreate`
   - enter into the users-db and connect `\c users_dev` and check `\dt`
+

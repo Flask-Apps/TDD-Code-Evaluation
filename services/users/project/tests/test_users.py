@@ -20,11 +20,11 @@ class TestUserService(BaseTestCase):
         """Ensure the /ping route behaves correctly."""
 
         response = self.client.get('/users/ping')
-        data = json.loads(response.data.decode()) # json -> dict
+        data = json.loads(response.data.decode())  # json -> dict
         self.assertEqual(response.status_code, 200)
         self.assertIn('pong', data['message'])
         self.assertIn('success', data['status'])
-    
+
     def test_add_user(self):
         '''Ensure a new user can be added to the database'''
         # print('*'*25)
@@ -33,8 +33,8 @@ class TestUserService(BaseTestCase):
         # print('*'*25)
         with self.client:
             response = self.client.post(
-                '/users', # /users route
-                data=json.dumps({ # dict -> json string
+                '/users',  # /users route
+                data=json.dumps({  # dict -> json string
                     'username': 'mikeyy',
                     'email': 'mikeyy@tokyo.com'
                 }),
@@ -93,7 +93,7 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                 '/users',
                 data=json.dumps({
-                    'username':'mikeyy',
+                    'username': 'mikeyy',
                     'email': 'mikeyy@tokyo.com'
                 }),
                 content_type='application/json',
@@ -188,6 +188,7 @@ class TestUserService(BaseTestCase):
             self.assertNotIn(b'<p>No users!</p>', response.data)
             self.assertIn(b'mikeyy', response.data)
             self.assertIn(b'toma', response.data)
+
 
 if __name__ == "__main__":
     unittest.main()
