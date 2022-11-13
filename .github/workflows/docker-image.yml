@@ -1,0 +1,32 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build users container
+      run:  docker-compose -f docker-compose-prod.yml build users --tag tdd-flask:$(date +%s)
+    
+    - name: Build users-db container
+      run:  docker-compose -f docker-compose-prod.yml build users-db --tag tdd-flask:$(date +%s)
+    
+    - name: Build nginx container
+      run:  docker-compose -f docker-compose-prod.yml build nginx --tag tdd-flask:$(date +%s)
+    
+    - name: Run the container
+      run: docker-compose -f docker-compose-prod.yml -d up
+    
+    
+      
+    
