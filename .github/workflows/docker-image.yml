@@ -16,13 +16,13 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Build users container
-      run:  docker-compose -f docker-compose-prod.yml build users --tag tdd-flask:$(date +%s)
+      run:  docker-compose -f docker-compose-prod.yml build users
     
     - name: Build users-db container
-      run:  docker-compose -f docker-compose-prod.yml build users-db --tag tdd-flask:$(date +%s)
+      run:  docker-compose -f docker-compose-prod.yml build users-db
     
     - name: Build nginx container
-      run:  docker-compose -f docker-compose-prod.yml build nginx --tag tdd-flask:$(date +%s)
+      run:  docker-compose -f docker-compose-prod.yml build nginx
     
     - name: Run the container
       run: docker-compose -f docker-compose-prod.yml -d up

@@ -3,6 +3,7 @@ version: '3.4'
 services:
   users:
     container_name: users
+    image: tdd-prod-users:v0.0.1
     build:
       context: ./services/users
       dockerfile: Dockerfile.prod
@@ -21,9 +22,10 @@ services:
       - DATABASE_TEST_URL=postgresql://postgres:postgres@users-db:5432/users_test
     depends_on:
       - users-db
-  
+
   users-db:
     container_name: users-db
+    image: tdd-prod-users-db:v0.0.1
     build:
       context: ./services/users/project/db
       dockerfile: Dockerfile
@@ -35,6 +37,7 @@ services:
 
   nginx:
     container_name: nginx
+    image: tdd-prod-nginx:v0.0.1
     build: ./services/nginx
     restart: always
     ports:
