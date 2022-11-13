@@ -35,4 +35,3 @@
   - `docker-compose up`
   - `make recreate`
   - enter into the users-db and connect `\c users_dev` and check `\dt`
-

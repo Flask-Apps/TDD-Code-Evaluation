@@ -15,17 +15,14 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
-    - name: Build users container
-      run:  docker-compose -f docker-compose-prod.yml build users
-    
-    - name: Build users-db container
-      run:  docker-compose -f docker-compose-prod.yml build users-db
-    
-    - name: Build nginx container
-      run:  docker-compose -f docker-compose-prod.yml build nginx
-    
-    - name: Run the container
-      run: docker-compose -f docker-compose-prod.yml up -d
+    - name: Build containers
+      run:  docker-compose up --build -d
 
-    - name: Test the builds
-      run:  docker-compose run users python manage.py test
+    - name: Run the tests
+      run: docker-compose run users python manage.py test
+
+    - name: Run linter
+      run:  docker-compose run users flake8 project
+    
+    - name: Stop Running containers
+      run: docker-compose down
