@@ -25,7 +25,10 @@ jobs:
       run:  docker-compose -f docker-compose-prod.yml build nginx
     
     - name: Run the container
-      run: docker-compose -f docker-compose-prod.yml -d up
+      run: docker-compose -f docker-compose-prod.yml up -d
+
+    - name: Test the builds
+      run:  docker-compose run users python manage.py test
     
     
       
