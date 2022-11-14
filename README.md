@@ -1,5 +1,11 @@
 # TDD
 
+![example workflow](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg)
+<br>
+![example event parameter](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg?event=push)
+<br>
+![example branch parameter](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg?branch=main)
+
 ## Important Terms
 
 ### Code coverage
