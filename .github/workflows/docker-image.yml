@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-
+    name: TDD-test
     runs-on: ubuntu-latest
 
     steps:
