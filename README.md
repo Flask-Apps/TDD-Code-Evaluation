@@ -1,10 +1,10 @@
 # TDD
 
 ![example workflow](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg)
-<br>
+<!-- <br>
 ![example event parameter](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg?event=push)
 <br>
-![example branch parameter](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg?branch=main)
+![example branch parameter](https://github.com/Flask-Apps/TDD-Code-Evaluation/actions/workflows/docker-image.yml/badge.svg?branch=main) -->
 
 ## Important Terms
 
@@ -12,6 +12,12 @@
 
 - it is the process of finding areas of our code that aren't exercised by tests.
 - this however doesn't measure the overall effectiveness of the test suite.
+
+### Flask Debug Toolbar
+
+- This is a Flask extension that helps in debugging our applications.
+- It adds a debugging toolbar into the view which provides info on HTTP headers, requests variables, configuration settings, and the no. of SQLAlchemy queries it took to render the view.
+- This information can be used to find bottlenecks in the rendering of the view.
 
 ## things to remember
 
