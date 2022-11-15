@@ -9,6 +9,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `sudo npm install -g n`
 - `sudo n stable`
 
+## Other things I did
+
+- removed the lock file `package-lock.json`
+- `echo 'package-lock=false' >> .npmrc`: to simplify the development process, we tell npm to not create the lock file for future module installations
+
 ## Available Scripts
 
 In the project directory, you can run:
