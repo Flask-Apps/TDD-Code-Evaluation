@@ -31,6 +31,26 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
 
+  # client:
+  #   container_name: client
+  #   build:
+  #     context: ./services/client
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3007:3000"
+  #   volumes:
+  #     - ./services/client:/app
+  #     # - /usr/src/app/node_modules
+  #   environment:
+  #     - NODE_ENV=development
+  #     - REACT_APP_USERS_SERVICE_URL=${REACT_APP_USERS_SERVICE_URL}
+  #     - REACT_APP_API_GATEWAY_URL=${REACT_APP_API_GATEWAY_URL}
+  #     - REACT_APP_EXERCISES_SERVICE_URL=${REACT_APP_EXERCISES_SERVICE_URL}
+  #     - REACT_APP_SCORES_SERVICE_URL=${REACT_APP_SCORES_SERVICE_URL}
+  #     - CHOKIDAR_USERPOLLING=true
+  #   depends_on:
+  #     - users
+
   nginx:
     container_name: nginx
     build: ./services/nginx
