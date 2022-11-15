@@ -13,6 +13,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - removed the lock file `package-lock.json`
 - `echo 'package-lock=false' >> .npmrc`: to simplify the development process, we tell npm to not create the lock file for future module installations
+- `export REACT_APP_USERS_SERVICE_URL=http://localhost:5001`
 
 ## Available Scripts
 
