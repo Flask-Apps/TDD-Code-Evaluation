@@ -8,12 +8,19 @@ class App extends Component {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
-    this.getUsers();
+    // add state property to the class and 
+    // sets users to an empty array
+    this.state = {
+      users: []
+    }
   }
+  componentDidMount() {
+    this.getUsers();
+  };
   getUsers() {
     // console.log("Pokemon")
     axios.get(`${process.env.REACT_APP_USERS_SERVICE_URL}/users`)
-    .then((res) => { console.log(res); })
+    .then((res) => { this.setState({ users: res.data.data.users }); })
     .catch((err) => { console.log(err); })
   }
   render() {
@@ -25,6 +32,18 @@ class App extends Component {
             <h1>All Users</h1>
             <hr />
             <br />
+            {
+              this.state.users.map((user) => {
+                return (
+                  <h4
+                    key={ user.id }
+                    className="card card-body bg-light"
+                  >
+                    { user.username }
+                  </h4>
+                )
+              }
+            )}
           </div>
         </div>
       </div>
