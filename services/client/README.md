@@ -15,6 +15,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - `echo 'package-lock=false' >> .npmrc`: to simplify the development process, we tell npm to not create the lock file for future module installations
 - `export REACT_APP_USERS_SERVICE_URL=http://localhost:5001`
 
+## Testing
+
+- `create-react-app` uses [Jest](https://jestjs.io/), a js test runner, by default. We'll also use [Enzyme](https://github.com/enzymejs/enzyme) which is a fantanstic utility library made specificially for testing react components.
+  - `npm i --save-dev enzyme enzyme-adapter-react-16`
+
 ## Available Scripts
 
 In the project directory, you can run:
