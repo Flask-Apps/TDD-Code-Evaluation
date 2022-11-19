@@ -9,7 +9,7 @@ const UsersList = (props) => {
     <div>
       {props.users.map((user) => {
         return (
-          <h4 key={user.id} className="card card-body bg-light">
+          <h4 key={user.id} className="users card card-body bg-light">
             {user.username}
           </h4>
         );
