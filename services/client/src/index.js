@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { createRoot } from "react-dom/client";
 import UsersList from "./components/UsersList";
+import AddUser from "./components/AddUser";
 
 // this component runs automatically when an instance is created
 // behind the scenes
@@ -38,6 +39,8 @@ class App extends Component {
             <br />
             <h1>All Users</h1>
             <hr />
+            <br />
+            <AddUser />
             <br />
             <UsersList users={this.state.users} />
           </div>
